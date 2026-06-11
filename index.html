@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucia Charm</title>
+  <style>
+    :root {
+      --bg: #f7f1eb;
+      --surface: rgba(255,255,255,.78);
+      --text: #241917;
+      --muted: #6f625c;
+      --accent: #7b4258;
+      --accent-dark: #5f3042;
+      --line: rgba(36,25,23,.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(123,66,88,.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(95,48,66,.08), transparent 22%),
+        linear-gradient(180deg, #fcf8f4 0%, var(--bg) 100%);
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 4px 0 24px;
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 30px;
+      align-items: center;
+      min-height: calc(100vh - 140px);
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(3rem, 6.8vw, 6.4rem);
+      line-height: .94;
+      font-weight: 500;
+      max-width: 9ch;
+    }
+
+    .lead {
+      font-family: Arial, sans-serif;
+      font-size: 1.06rem;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 36rem;
+      margin: 0 0 26px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: .95rem;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .secondary {
+      background: rgba(255,255,255,.45);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .visual {
+      position: relative;
+      min-height: 76vh;
+      border-radius: 30px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(36,25,23,.10), rgba(36,25,23,.28)),
+        url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=80") center/cover;
+      box-shadow: 0 30px 70px rgba(0,0,0,.10);
+    }
+
+    .visual-card {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.55);
+    }
+
+    .visual-card h2,
+    .section h2,
+    .feature h3 {
+      margin: 0 0 10px;
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .visual-card p,
+    .section p,
+    .feature p {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .section {
+      padding: 16px 0 46px;
+    }
+
+    .section h2 {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      backdrop-filter: blur(10px);
+    }
+
+    .feature h3 {
+      font-size: 1rem;
+    }
+
+    .feature p {
+      font-size: .98rem;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+
+    .story-box {
+      padding: 26px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+    }
+
+    .story-box h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .story-box p {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .quote {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.7rem;
+      line-height: 1.5;
+      margin-top: 18px;
+      color: var(--accent-dark);
+    }
+
+    footer {
+      padding: 10px 0 24px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 960px) {
+      .hero, .features, .story {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 18px;
+      }
+
+      .visual {
+        min-height: 58vh;
+      }
+
+      h1 {
+        max-width: 11ch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <div>Lucia Charm</div>
+      <div>Curadoria contemporânea</div>
+    </div>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Elegância, presença e calma</div>
+        <h1>Uma marca pensada para acompanhar todas as fases da vida.</h1>
+        <p class="lead">
+          Lucia Charm reúne peças e escolhas visuais com acabamento cuidadoso, linhas suaves e uma leitura sofisticada.
+          A proposta é criar uma experiência leve, acolhedora e atemporal — sem impor idade, tendência ou excesso.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#">Explorar coleção</a>
+          <a class="btn secondary" href="#">Conhecer a marca</a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="visual-card">
+          <h2>Direção visual</h2>
+          <p>
+            Tipografia elegante, muito respiro e imagens grandes para uma leitura mais premium.
+            O layout valoriza clareza, contraste suave e uma presença editorial.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Destaques da coleção</h2>
+
+      <div class="features">
+        <article class="feature">
+          <h3>Peças essenciais</h3>
+          <p>
+            Modelos versáteis para o dia a dia, com acabamento impecável e caimento pensado para uma presença elegante.
+          </p>
+        </article>
+
+        <article class="feature">
+          <h3>Seleção refinada</h3>
+          <p>
+            Itens escolhidos com foco em leveza, conforto e uma estética limpa que valoriza o visual sem excessos.
+          </p>
+        </article>
+
+        <article class="feature">
+          <h3>Favoritos da estação</h3>
+          <p>
+            Opções atuais, delicadas e fáceis de combinar, criadas para acompanhar diferentes momentos com naturalidade.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Sobre a marca</h2>
+
+      <div class="story">
+        <div class="story-box">
+          <h3>Sobre a Lucia Charm</h3>
+          <p>
+            A Lucia Charm foi criada para mulheres que valorizam elegância com significado.
+            Nossa curadoria une sofisticação, conforto e presença em peças que acompanham a rotina com delicadeza e personalidade.
+          </p>
+          <p class="quote">
+            Mais do que vestir, a proposta é revelar estilo com naturalidade.
+          </p>
+        </div>
+
+        <div class="story-box">
+          <h3>O que nos guia</h3>
+          <p>
+            Seleção cuidadosa, estética atemporal e uma experiência visual que transmite calma.
+            Tudo foi pensado para reforçar uma marca madura, atual e acolhedora.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Lucia Charm — experiência visual com foco em elegância e clareza.
+    </footer>
+  </main>
+</body>
+</html>
